@@ -1,0 +1,23 @@
+<div class="course-card" [ngStyle]="getStyles()" #card>
+''
+    <div class="course-title">
+        <span [ngClass]="getRequiredClasses()">{{indexNum}}</span> {{course.description}}
+    </div>
+    <!-- Content gets Projected in the ng content element based on content present in the course card tag in app component -->
+    <ng-content select="course-image" *ngIf="course.iconUrl; else altImage"></ng-content> 
+
+    <ng-template #altImage>
+      <ng-container *ngTemplateOutlet="noImage; context:{buttonObj:{first:'blame',middle:'game',last:'is real'}}"></ng-container>
+    </ng-template>
+    <div class="course-description">
+        {{course.longDescription}}
+    </div>
+
+    <div class="course-catogery" [ngSwitch]="course.category">
+        <div class="category" *ngSwitchCase="'BEGINNER'">{{course.category | uppercase}}</div>
+        <div class="category" *ngSwitchCase="'INTERMEDIATE'">{{course.category | uppercase}}</div>
+        <div class="category" *ngSwitchCase="'ADVANCED'">{{course.category | uppercase}}</div>
+    </div>
+    <button (click)="selectedCourse()">view Course</button>
+
+</div>

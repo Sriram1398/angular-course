@@ -16,6 +16,10 @@
       "es2017",
       "dom"
     ],
-    "useDefineForClassFields": false
-  }
+    "useDefineForClassFields": false,
+    "noImplicitAny": true,
+    // "strictPropertyInitialization": true,
+    // "strictNullChecks": true
+  },
+
 }

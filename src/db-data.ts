@@ -1,6 +1,7 @@
+import {Course} from './app/model/course';
 
 
-export const COURSES: any = [
+export const COURSES: Array<Course> = [
 
     {
         id: 1,
@@ -32,7 +33,7 @@ export const COURSES: any = [
         description: "Angular for Beginners",
         iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/angular2-for-beginners-small-v2.png',
         longDescription: "Establish a solid layer of fundamentals, learn what's under the hood of Angular",
-        category: 'BEGINNER',
+        category: 'INTERMEDIATE',
         lessonsCount: 10
     },
     {

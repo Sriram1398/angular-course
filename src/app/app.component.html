@@ -1,27 +1,56 @@
 <div class="top-menu">
 
-    <img class="logo"
-         src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+    <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 
 </div>
 
 
-<div class="courses">
+<div class="courses" #container>
+    <!-- @for (course of courses; track course.id;
+    let index =$index; let first = $first;
+    let last = $last) {
+    <course-card [course]="course" [indexNum]="index" (courseSelected)="selectedCourse($event)" [class.is-first]="first"
+        [class.is-last]="last" [ngClass]="{'is-even':$even}" [ngClass]="{'is-odd':$odd}" />
+    }
+    @empty {
+        <h1>Non courses found</h1>
+    } -->
+    <!-- <course-card [course]="coreDeepDive" (courseEmitter)="selectedCourse($event)"/>
+    <course-card [course]="rxJs"/>
+    <course-card [course]="ngRx"/>
+    <course-card [course]="coreDeepDive" /> -->
+    <!-- To detact the  changes  -->
+    <button (click)="changeIndex()">Change Course</button>
 
-    <div class="course-card">
 
-        <div class="course-title">
-            Angular Core Deep Dive
-        </div>
-        <img width="300" alt="Angular Logo"
-             src="https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-core-in-depth-small.png">
+    <course-card #cardCourses
+        *ngFor="let course of courses.slice(0,1); trackBy: trackCourse; index as i; first as first; last as l"
+        [class.is-first]="first" [class.is-last]="l" [indexNum]="indexValue" [course]='course' [noImage]="btn"
+        (courseSelected)="selectedCourse($event)">
 
-        <div class="course-description">
-            A detailed walk-through of the most important part of Angular - the Core and Common modules.
-        </div>
+        <course-image [src]="course.iconUrl"></course-image>
+        <!-- <course-image [src]="courses[1].iconUrl"></course-image> -->
 
-    </div>
+    </course-card>
 
+    
+
+    <ng-container *ngTemplateOutlet="btn; context:{$implicit:buttonObj}"></ng-container>
+     <ng-container *ngTemplateOutlet="text ; context:{$implicit:true}"></ng-container>
+    <!-- <course-card #course1 [course]="courses[0]" (courseSelected)="selectedCourse($event)"></course-card> -->
 </div>
 
+<ng-template #btn let-value>
+    <h1>The Anguar template is very intersting to implement</h1>
+    <button type="button"> Test the ng-template usage{{" "+value.first}}</button>
+    <!-- <ul>
+    <li>{{button.first}}</li>
+    <li>{{button.last}}</li>
+    <li>{{button.middle}}</li>
+</ul> -->
+</ng-template>
 
+<ng-template #text let-check>
+    <label for="selection">Yes</label>
+    <input type="checkbox" name="selection" [checked]="check">
+</ng-template>
